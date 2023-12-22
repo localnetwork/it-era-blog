@@ -1,0 +1,22 @@
+name: iterad10
+recipe: drupal10
+config:
+  php: "8.1"
+  via: "apache:2.4"
+  webroot: .
+services:
+  appserver:
+    type: "php:8.1"
+  phpmyadmin:
+    type: phpmyadmin
+  database:
+    type: "mysql:5.7"
+    creds:
+      user: iterad10
+      password: iterad10
+      database: iterad10
+proxy:
+  phpmyadmin:
+    - it-era.lndo.site
+  mailhog:
+    - mailhog-it-era.lndo.site

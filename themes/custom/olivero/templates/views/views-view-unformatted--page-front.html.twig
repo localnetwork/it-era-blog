@@ -1,0 +1,86 @@
+{#
+/**
+ * @file
+ * Theme override to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+{% for row in rows %}
+  {%
+    set row_classes = [
+      default_row_class ? 'views-row',
+    ]
+  %}
+  {# <div{{ row.attributes.addClass(row_classes) }}>
+    {{ row.content }}
+  </div> #}
+  <div class="item">
+    <div class="item-wrapper">
+      <div class="row">
+        <div class="content-left">
+          <div class="user-info">
+            <div class="row">
+              <img src="{{ bamboo_render_image_style(row.content['#row']._entity.uid.0.entity.user_picture.0.entity.uri.0.value, '100_sc') }}" alt="{{  row.content['#row']._entity.title.0.value }}">
+              <div class="username">
+                {{ row.content['#row']._entity.uid.0.entity.name.0.value }}
+              </div>
+              <div class="post-date">
+                {{ row.content['#row']._entity.created.0.value|date('M d, Y') }}
+              </div>
+            </div>
+          </div>
+          <h2 class="node__title">
+            <a href="/node/{{  row.content['#row']._entity.nid.0.value }}">
+            {{ row.content['#row']._entity.title.0.value }}
+            </a>
+          </h2>
+
+
+          {% if row.content['#row']._entity.body.0 %}
+              {% set paragraphs = row.content['#row']._entity.body.0.value|split('</p>') %}
+              {% set firstParagraph = paragraphs|first ~ '</p>' %}
+              {% set bodyTrim = firstParagraph %} 
+              
+              {{ bodyTrim|striptags("&nbsp;&gt;")|raw }}...
+          {% endif %}
+        </div>
+
+        <div class="content-right">
+            <div class="item__image">
+              <a href="/node/{{ row.content['#row']._entity.nid.0.value }}">
+                <img src="{{ bamboo_render_image_style(row.content['#row']._entity.field_image.0.entity.uri.0.value, '200_sc') }}" alt="{{  row.content['#row']._entity.title.0.value }}">
+              </a> 
+            </div>
+        </div>
+      </div>
+      {% if row.content['#row']._entity.field_tags.0 %}
+      <div class="tags">
+        {% for tag in row.content['#row']._entity.field_tags %}
+          <a href="/taxonomy/term/{{ tag.entity.tid.0.value }}">
+            {{  tag.entity.name.0.value }}
+          </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="item__rm">
+        <a href="/node/{{  row.content['#row']._entity.nid.0.value }}">
+          Continue Reading
+        </a>
+      </div> 
+    </div> 
+  </div>
+{% endfor %}
