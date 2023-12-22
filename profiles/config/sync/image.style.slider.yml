@@ -1,0 +1,15 @@
+uuid: f740e5e5-c54a-4296-8151-6c4d57e263b3
+langcode: en
+status: true
+dependencies: {  }
+name: slider
+label: Slider
+effects:
+  33712461-10bc-4040-b04d-57920e0c5851:
+    uuid: 33712461-10bc-4040-b04d-57920e0c5851
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 700
+      anchor: center-center

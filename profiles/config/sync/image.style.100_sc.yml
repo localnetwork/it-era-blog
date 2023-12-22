@@ -1,0 +1,15 @@
+uuid: 02341a2f-2ed8-473a-8872-b01ca072f044
+langcode: en
+status: true
+dependencies: {  }
+name: 100_sc
+label: '100 SC'
+effects:
+  a4f653d9-a99f-4b30-8555-92cbd8080ee2:
+    uuid: a4f653d9-a99f-4b30-8555-92cbd8080ee2
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 100
+      height: 100
+      anchor: center-center

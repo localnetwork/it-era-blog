@@ -1,0 +1,15 @@
+uuid: 94579033-4c0b-43b6-bb96-fe45eef08c90
+langcode: en
+status: true
+dependencies: {  }
+name: 200_sc
+label: 200_SC
+effects:
+  ca65a4fe-f18c-4ab4-a8c6-223d87e58174:
+    uuid: ca65a4fe-f18c-4ab4-a8c6-223d87e58174
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 500
+      height: 500
+      anchor: center-center
